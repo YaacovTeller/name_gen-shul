@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import data from './countries_figures.json'
 import './App.css';
 import { useState } from 'react';
@@ -17,9 +17,7 @@ const figures: infoList = {
   title: "FIGURES",
   list: data.figures
 };
-const padding = {
-  padding: "5px",
-};
+
 
 function App() {
   return (
