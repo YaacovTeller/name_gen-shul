@@ -47,7 +47,7 @@ function ShulGen(){
 
   useEffect(() => {
     calcAcronym();
-  }, [Name||Country]);
+  }, [Name,Country]);
 
   function SetNamePart(obj: infoList, choiceFunc: React.Dispatch<React.SetStateAction<string>>){
     let num = RandomIndex(obj.list.length)
