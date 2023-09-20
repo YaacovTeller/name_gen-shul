@@ -1,6 +1,12 @@
 button {
   margin: 8px;
 }
+.nameBox {
+font-size: 25px;
+}
+.acroBox {
+font-size: 50px;
+}
 
 .App {
   text-align: center;

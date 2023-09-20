@@ -27,7 +27,7 @@ function App() {
         <div style={{width: '80%'}}>
           Sometimes, something about a local shul will be bothering you, but you can't quite put your finger on what it is.
           Chances are, it's because it doesn't have a handy acronym to call it by.
-          With this shul name generator, you can eliminate your discomfort by easily assigning one with a click, 
+          With this <b>Shul Name Generator</b>, you can eliminate your discomfort by easily assigning one with a click, 
           using a clever blend of interesting figures from Tanach with current autocracies and despotic governments.
         </div>
           <ShulGen />
@@ -49,18 +49,22 @@ function ShulGen(){
 
   function SetNamePart(obj: infoList, choiceFunc: React.Dispatch<React.SetStateAction<string>>){
     let num = RandomIndex(obj.list.length)
-      choiceFunc(obj.list[num] )
+      choiceFunc(obj.list[num])
   }
 
   function SetWholeName(){
     SetNamePart(figures, setFigure)
     SetNamePart(countries, setCountry)
   }
+
   function calcAcronym(){
     let str:string = "";
     str += calcPartAcronym(Name);
     str += "M";
     str += calcPartAcronym(Country);
+    if (["a","e","i","o","u"].includes(str[str.length-1])) {
+      str = str.slice(0,-1);
+    }
     setAcronym(str);
   }
   function calcPartAcronym(str:string){
@@ -68,14 +72,16 @@ function ShulGen(){
     str = arr.length > 1 ? multipleWords(arr) : getFirstLetters(arr[0]);
     return str
   }
-  function getFirstLetters(str:string){
-    return str.slice(0, 2)
+  function getFirstLetters(str:string, numberOfLetters?:number){
+    numberOfLetters = numberOfLetters ? numberOfLetters : 2;
+    return str.slice(0, numberOfLetters)
   }
+
   function multipleWords(arr: Array<string>){
     let str:string = "";
-    arr.forEach(el => {
+    arr.forEach(function(el,indx) {
       if (["of","and"].includes(el)) return
-      str += getFirstLetters(el)
+    str += getFirstLetters(el);
     });
     return str;
   }
@@ -95,15 +101,15 @@ function ShulGen(){
       <br />
       {Name.length > 0 &&
         <>
-          <div className="badge bg-secondary">
+          <div className="badge bg-secondary nameBox">
             {Name}
             &nbsp;
-            {"minyan"}
+            <b style={{color: 'lightgrey'}}>{"minyan"}</b>
             &nbsp;
             {Country}
           </div>
           <br/>
-          <div className="badge bg-secondary">
+          <div className="badge bg-secondary acroBox">
             {Acronym}
           </div>
         </>
